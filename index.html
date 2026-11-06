@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Александр Кюркчу — разработка прошивок STM32</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1720;--card:#16212d;--line:#243344;--text:#e6edf3;--muted:#93a4b5;--acc:#3fb6a8;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:48px 24px 64px;position:relative}
+.lang{position:absolute;top:20px;right:24px;display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.lang button{background:none;border:0;color:var(--muted);font:600 13px Inter,sans-serif;padding:6px 12px;cursor:pointer}
+.lang button.on{background:var(--acc);color:#0f1720}
+header{border-bottom:1px solid var(--line);padding-bottom:32px;margin-bottom:40px}
+h1{font-size:34px;margin:0 0 6px}
+.role{color:var(--acc);font-weight:600;font-size:18px;margin:0 0 16px}
+.lead{color:var(--muted);max-width:700px;margin:0}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tag{font:500 13px JetBrains Mono,monospace;border:1px solid var(--line);border-radius:6px;padding:3px 9px;color:var(--muted)}
+h2{font-size:22px;margin:44px 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card h3{margin:0 0 4px;font-size:18px}
+.card .sub{color:var(--acc);font-size:13px;font-weight:600;margin-bottom:10px}
+.card ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:15px}
+.card li{margin:3px 0}
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.svc div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:15px}
+.svc b{display:block;margin-bottom:4px}
+.svc span{color:var(--muted)}
+.contacts{background:var(--card);border:1px solid var(--acc);border-radius:12px;padding:24px}
+.contacts p{margin:4px 0}
+.contacts a{color:var(--acc)}
+footer{color:var(--muted);font-size:13px;margin-top:40px}
+[data-l="ru"]{display:none}
+body.ru [data-l="ru"]{display:revert}
+body.ru [data-l="en"]{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="lang"><button id="b-en" class="on" onclick="setL('en')">EN</button><button id="b-ru" onclick="setL('ru')">RU</button></div>
+<header>
+  <h1><span data-l="en">Alexandru Chiurcciu</span><span data-l="ru">Александр Кюркчу</span></h1>
+  <p class="role"><span data-l="en">Embedded firmware developer · STM32 · since 2015</span><span data-l="ru">Разработчик встраиваемого ПО · STM32 · с 2015 года</span></p>
+  <p class="lead" data-l="en">I develop firmware for industrial instruments, together with the PC software to configure, calibrate and automatically test them. I deliver complete projects: from peripheral drivers and communication protocols to desktop GUIs, bootloaders and customer documentation.</p>
+  <p class="lead" data-l="ru">Пишу прошивки для промышленных приборов и к ним — программы для настройки, калибровки и автоматического тестирования на ПК. Делаю проект целиком: от драйверов периферии и протокола обмена до GUI, загрузчика и документации для заказчика.</p>
+  <div class="tags">
+    <span class="tag">STM32 / GD32</span><span class="tag">C</span><span class="tag">FreeRTOS</span><span class="tag">HAL / LL</span>
+    <span class="tag">CAN</span><span class="tag">Modbus RTU</span><span class="tag">RS-485</span><span class="tag">4–20 mA</span>
+    <span class="tag">ESP32 / ESP-IDF</span><span class="tag">MQTT</span><span class="tag">C# / WPF</span><span class="tag">Python</span>
+    <span class="tag">Keil</span><span class="tag">CubeIDE</span><span class="tag">Git</span>
+  </div>
+</header>
+
+<h2><span data-l="en">Projects</span><span data-l="ru">Проекты</span></h2>
+<div class="grid">
+  <div class="card">
+    <h3><span data-l="en">X-ray collimator controller</span><span data-l="ru">Управление коллиматором рентгеновской установки</span></h3>
+    <div class="sub"><span data-l="en">STM32F407 · FreeRTOS · CAN · 7 stepper motors</span><span data-l="ru">STM32F407 · FreeRTOS · CAN · 7 шаговых двигателей</span></div>
+    <ul data-l="en">
+      <li>7 motors on TMC2209 drivers (UART): current control, stealthChop, open-load detection</li>
+      <li>4 AS5048 absolute encoders, home position calibration</li>
+      <li>Customer CAN protocol plus service commands; parameters in F-RAM / flash</li>
+      <li>Custom CAN bootloader with CRC32 check and recovery mode</li>
+      <li>C# WPF test tool: device simulator, 100+ automated protocol tests, firmware update</li>
+    </ul>
+    <ul data-l="ru">
+      <li>Управление 7 моторами через драйверы TMC2209 (UART): токи, stealthChop, обнаружение обрыва мотора</li>
+      <li>4 абсолютных энкодера AS5048, калибровка нулевых положений</li>
+      <li>Протокол заказчика по CAN + сервисные команды; хранение параметров в F-RAM / flash</li>
+      <li>Собственный CAN-загрузчик с проверкой CRC32 и аварийным режимом</li>
+      <li>Тестер на C# WPF: симулятор устройства, 100+ автотестов протокола, обновление ПО</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><span data-l="en">Resonant density &amp; viscosity meter</span><span data-l="ru">Резонансный плотномер-вискозиметр</span></h3>
+    <div class="sub">STM32F0 · Modbus RTU · 4–20 mA · Pt1000</div>
+    <ul data-l="en">
+      <li>Density and viscosity measured from the sensing element's resonance</li>
+      <li>Temperature compensation (Pt1000), two 4–20 mA current outputs</li>
+      <li>Firmware update over RS-485 via bootloader</li>
+      <li>C# WPF configuration &amp; calibration software, English/Russian UI</li>
+      <li>Customer release packages: firmware, software, documentation</li>
+    </ul>
+    <ul data-l="ru">
+      <li>Измерение плотности и вязкости по резонансу чувствительного элемента</li>
+      <li>Температурная компенсация (Pt1000), два токовых выхода 4–20 мА</li>
+      <li>Обновление прошивки по RS-485 через загрузчик</li>
+      <li>Программа настройки и калибровки на C# WPF, русский/английский интерфейс</li>
+      <li>Комплекты поставки для заказчика: прошивка, ПО, документация</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><span data-l="en">Water vending machine telemetry</span><span data-l="ru">Телеметрия автоматов розлива воды</span></h3>
+    <div class="sub">STM32 + ESP32 · MQTT · Python · PostgreSQL</div>
+    <ul data-l="en">
+      <li>STM32 board controls the machine, ESP32 sends data over Wi-Fi</li>
+      <li>Python polling server, PostgreSQL database, web interface</li>
+      <li>Alerts and status via Telegram bot, Docker deployment</li>
+      <li>Designed for hundreds of devices</li>
+    </ul>
+    <ul data-l="ru">
+      <li>Плата на STM32 управляет автоматом, ESP32 передаёт данные по Wi-Fi</li>
+      <li>Сервер опроса устройств на Python, база PostgreSQL, веб-интерфейс</li>
+      <li>Уведомления и статус через Telegram-бота, развёртывание в Docker</li>
+      <li>Рассчитано на сотни устройств</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><span data-l="en">Sensors, displays &amp; peripherals</span><span data-l="ru">Датчики, дисплеи и периферия</span></h3>
+    <div class="sub"><span data-l="en">various projects</span><span data-l="ru">разные проекты</span></div>
+    <ul data-l="en">
+      <li>DWIN displays over UART with DMA, DS18B20 sensors</li>
+      <li>Current output on AD5421 DAC (tuning-fork density meter)</li>
+      <li>IR protocol capture &amp; decoding (Input Capture, USB CDC)</li>
+      <li>Test-bench and service utilities in Python and C#</li>
+    </ul>
+    <ul data-l="ru">
+      <li>Дисплеи DWIN по UART с DMA, датчики DS18B20</li>
+      <li>Токовый выход на ЦАП AD5421 (вилочный плотномер)</li>
+      <li>Захват и декодирование ИК-протоколов (Input Capture, USB CDC)</li>
+      <li>Утилиты для стендов и сервиса на Python и C#</li>
+    </ul>
+  </div>
+</div>
+
+<h2><span data-l="en">Services</span><span data-l="ru">Чем могу помочь</span></h2>
+<div class="svc">
+  <div><b><span data-l="en">Firmware from scratch</span><span data-l="ru">Прошивка с нуля</span></b><span data-l="en">from a spec or an existing board and schematic</span><span data-l="ru">по ТЗ или по готовой плате и схеме</span></div>
+  <div><b><span data-l="en">Legacy code rework</span><span data-l="ru">Доработка чужого кода</span></b><span data-l="en">understand, fix, extend</span><span data-l="ru">разобраться, исправить, добавить функции</span></div>
+  <div><b><span data-l="en">Bootloaders</span><span data-l="ru">Загрузчики</span></b><span data-l="en">updates over CAN, RS-485, USB</span><span data-l="ru">обновление по CAN, RS-485, USB</span></div>
+  <div><b><span data-l="en">Protocols</span><span data-l="ru">Протоколы</span></b><span>CAN, Modbus, UART, SPI, I²C, MQTT</span></div>
+  <div><b><span data-l="en">PC software</span><span data-l="ru">ПО для ПК</span></b><span data-l="en">configuration, calibration, test automation (C#, Python)</span><span data-l="ru">настройка, калибровка, автотесты (C#, Python)</span></div>
+  <div><b><span data-l="en">Porting</span><span data-l="ru">Перенос на аналоги</span></b><span data-l="en">STM32 → GD32 and other MCUs</span><span data-l="ru">STM32 → GD32 и др.</span></div>
+</div>
+
+<h2><span data-l="en">Contact</span><span data-l="ru">Контакты</span></h2>
+<div class="contacts">
+  <p>Email: <a href="mailto:alexbariskin@gmail.com">alexbariskin@gmail.com</a></p>
+  <p>Telegram: <a href="https://t.me/OnWert">@OnWert</a></p>
+  <p data-l="en">Remote work. I usually reply within a day.</p>
+  <p data-l="ru">Работаю удалённо, как самозанятый. Отвечаю в течение дня.</p>
+</div>
+
+<footer>© 2026 <span data-l="en">Alexandru Chiurcciu</span><span data-l="ru">Александр Кюркчу</span></footer>
+</div>
+<script>
+function setL(l){
+  document.body.classList.toggle('ru',l==='ru');
+  document.documentElement.lang=l;
+  document.getElementById('b-en').classList.toggle('on',l==='en');
+  document.getElementById('b-ru').classList.toggle('on',l==='ru');
+  try{localStorage.setItem('lang',l)}catch(e){}
+}
+var s=null;try{s=localStorage.getItem('lang')}catch(e){}
+if(s==='ru'||(!s&&location.hash==='#ru'))setL('ru');
+</script>
+</body>
+</html>
