@@ -35,19 +35,20 @@ h2{font-size:22px;margin:44px 0 18px}
 .contacts p{margin:4px 0}
 .contacts a{color:var(--acc)}
 footer{color:var(--muted);font-size:13px;margin-top:40px}
-[data-l="ru"]{display:none}
-body.ru [data-l="ru"]{display:revert}
-body.ru [data-l="en"]{display:none}
+[data-l="ru"],[data-l="de"]{display:none}
+body.ru [data-l="ru"],body.de [data-l="de"]{display:revert}
+body.ru [data-l="en"],body.de [data-l="en"]{display:none}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="lang"><button id="b-en" class="on" onclick="setL('en')">EN</button><button id="b-ru" onclick="setL('ru')">RU</button></div>
+<div class="lang"><button id="b-en" class="on" onclick="setL('en')">EN</button><button id="b-ru" onclick="setL('ru')">RU</button><button id="b-de" onclick="setL('de')">DE</button></div>
 <header>
-  <h1><span data-l="en">Alexandru Chiurcciu</span><span data-l="ru">Александр Кюркчу</span></h1>
-  <p class="role"><span data-l="en">Embedded firmware developer · STM32 · since 2015</span><span data-l="ru">Разработчик встраиваемого ПО · STM32 · с 2015 года</span></p>
+  <h1><span data-l="en">Alexandru Chiurcciu</span><span data-l="ru">Александр Кюркчу</span><span data-l="de">Alexandru Chiurcciu</span></h1>
+  <p class="role"><span data-l="en">Embedded firmware developer · STM32 · since 2015</span><span data-l="ru">Разработчик встраиваемого ПО · STM32 · с 2015 года</span><span data-l="de">Embedded-Firmware-Entwickler · STM32 · seit 2015</span></p>
   <p class="lead" data-l="en">I develop firmware for industrial instruments, together with the PC software to configure, calibrate and automatically test them. I deliver complete projects: from peripheral drivers and communication protocols to desktop GUIs, bootloaders and customer documentation.</p>
   <p class="lead" data-l="ru">Пишу прошивки для промышленных приборов и к ним — программы для настройки, калибровки и автоматического тестирования на ПК. Делаю проект целиком: от драйверов периферии и протокола обмена до GUI, загрузчика и документации для заказчика.</p>
+  <p class="lead" data-l="de">Ich entwickle Firmware für Industriegeräte und dazu die PC-Software für Konfiguration, Kalibrierung und automatisierte Tests. Ich setze Projekte komplett um: von Peripherietreibern und Kommunikationsprotokollen über Desktop-GUIs und Bootloader bis zur Kundendokumentation.</p>
   <div class="tags">
     <span class="tag">STM32 / GD32</span><span class="tag">C</span><span class="tag">FreeRTOS</span><span class="tag">HAL / LL</span>
     <span class="tag">CAN</span><span class="tag">Modbus RTU</span><span class="tag">RS-485</span><span class="tag">4–20 mA</span>
@@ -56,11 +57,11 @@ body.ru [data-l="en"]{display:none}
   </div>
 </header>
 
-<h2><span data-l="en">Projects</span><span data-l="ru">Проекты</span></h2>
+<h2><span data-l="en">Projects</span><span data-l="ru">Проекты</span><span data-l="de">Projekte</span></h2>
 <div class="grid">
   <div class="card">
-    <h3><span data-l="en">X-ray collimator controller</span><span data-l="ru">Управление коллиматором рентгеновской установки</span></h3>
-    <div class="sub"><span data-l="en">STM32F407 · FreeRTOS · CAN · 7 stepper motors</span><span data-l="ru">STM32F407 · FreeRTOS · CAN · 7 шаговых двигателей</span></div>
+    <h3><span data-l="en">X-ray collimator controller</span><span data-l="ru">Управление коллиматором рентгеновской установки</span><span data-l="de">Steuerung eines Röntgenkollimators</span></h3>
+    <div class="sub"><span data-l="en">STM32F407 · FreeRTOS · CAN · 7 stepper motors</span><span data-l="ru">STM32F407 · FreeRTOS · CAN · 7 шаговых двигателей</span><span data-l="de">STM32F407 · FreeRTOS · CAN · 7 Schrittmotoren</span></div>
     <ul data-l="en">
       <li>7 motors on TMC2209 drivers (UART): current control, stealthChop, open-load detection</li>
       <li>4 AS5048 absolute encoders, home position calibration</li>
@@ -75,9 +76,16 @@ body.ru [data-l="en"]{display:none}
       <li>Собственный CAN-загрузчик с проверкой CRC32 и аварийным режимом</li>
       <li>Тестер на C# WPF: симулятор устройства, 100+ автотестов протокола, обновление ПО</li>
     </ul>
+    <ul data-l="de">
+      <li>7 Motoren über TMC2209-Treiber (UART): Stromregelung, stealthChop, Open-Load-Erkennung</li>
+      <li>4 Absolutwertgeber AS5048, Kalibrierung der Nullpositionen</li>
+      <li>CAN-Protokoll des Kunden plus Servicebefehle; Parameter in F-RAM / Flash</li>
+      <li>Eigener CAN-Bootloader mit CRC32-Prüfung und Wiederherstellungsmodus</li>
+      <li>Testtool in C# WPF: Gerätesimulator, über 100 automatisierte Protokolltests, Firmware-Update</li>
+    </ul>
   </div>
   <div class="card">
-    <h3><span data-l="en">Resonant density &amp; viscosity meter</span><span data-l="ru">Резонансный плотномер-вискозиметр</span></h3>
+    <h3><span data-l="en">Resonant density &amp; viscosity meter</span><span data-l="ru">Резонансный плотномер-вискозиметр</span><span data-l="de">Resonanz-Dichte- und Viskositätsmessgerät</span></h3>
     <div class="sub">STM32F0 · Modbus RTU · 4–20 mA · Pt1000</div>
     <ul data-l="en">
       <li>Density and viscosity measured from the sensing element's resonance</li>
@@ -93,9 +101,16 @@ body.ru [data-l="en"]{display:none}
       <li>Программа настройки и калибровки на C# WPF, русский/английский интерфейс</li>
       <li>Комплекты поставки для заказчика: прошивка, ПО, документация</li>
     </ul>
+    <ul data-l="de">
+      <li>Messung von Dichte und Viskosität über die Resonanz des Sensorelements</li>
+      <li>Temperaturkompensation (Pt1000), zwei 4–20-mA-Stromausgänge</li>
+      <li>Firmware-Update über RS-485 per Bootloader</li>
+      <li>Konfigurations- und Kalibriersoftware in C# WPF, Oberfläche auf Englisch und Russisch</li>
+      <li>Lieferpakete für den Kunden: Firmware, Software, Dokumentation</li>
+    </ul>
   </div>
   <div class="card">
-    <h3><span data-l="en">Water vending machine telemetry</span><span data-l="ru">Телеметрия автоматов розлива воды</span></h3>
+    <h3><span data-l="en">Water vending machine telemetry</span><span data-l="ru">Телеметрия автоматов розлива воды</span><span data-l="de">Telemetrie für Wasserautomaten</span></h3>
     <div class="sub">STM32 + ESP32 · MQTT · Python · PostgreSQL</div>
     <ul data-l="en">
       <li>STM32 board controls the machine, ESP32 sends data over Wi-Fi</li>
@@ -109,11 +124,17 @@ body.ru [data-l="en"]{display:none}
       <li>Уведомления и статус через Telegram-бота, развёртывание в Docker</li>
       <li>Рассчитано на сотни устройств</li>
     </ul>
-    <p style="margin:12px 0 0;font-size:14px"><a href="water-telemetry.html" style="color:var(--acc)"><span data-l="en">Architecture &amp; diagrams →</span><span data-l="ru">Архитектура и схемы →</span></a></p>
+    <ul data-l="de">
+      <li>Eine STM32-Platine steuert den Automaten, ein ESP32 überträgt die Daten per WLAN</li>
+      <li>Abfrageserver in Python, PostgreSQL-Datenbank, Weboberfläche</li>
+      <li>Benachrichtigungen und Status per Telegram-Bot, Deployment mit Docker</li>
+      <li>Ausgelegt für Hunderte von Geräten</li>
+    </ul>
+    <p style="margin:12px 0 0;font-size:14px"><a href="water-telemetry.html" style="color:var(--acc)"><span data-l="en">Architecture &amp; diagrams →</span><span data-l="ru">Архитектура и схемы →</span><span data-l="de">Architektur und Diagramme →</span></a></p>
   </div>
   <div class="card">
-    <h3><span data-l="en">Sensors, displays &amp; peripherals</span><span data-l="ru">Датчики, дисплеи и периферия</span></h3>
-    <div class="sub"><span data-l="en">various projects</span><span data-l="ru">разные проекты</span></div>
+    <h3><span data-l="en">Sensors, displays &amp; peripherals</span><span data-l="ru">Датчики, дисплеи и периферия</span><span data-l="de">Sensoren, Displays und Peripherie</span></h3>
+    <div class="sub"><span data-l="en">various projects</span><span data-l="ru">разные проекты</span><span data-l="de">verschiedene Projekte</span></div>
     <ul data-l="en">
       <li>DWIN displays over UART with DMA, DS18B20 sensors</li>
       <li>Current output on AD5421 DAC (tuning-fork density meter)</li>
@@ -126,39 +147,49 @@ body.ru [data-l="en"]{display:none}
       <li>Захват и декодирование ИК-протоколов (Input Capture, USB CDC)</li>
       <li>Утилиты для стендов и сервиса на Python и C#</li>
     </ul>
+    <ul data-l="de">
+      <li>DWIN-Displays über UART mit DMA, DS18B20-Sensoren</li>
+      <li>Stromausgang mit DAC AD5421 (Schwinggabel-Dichtemessgerät)</li>
+      <li>Erfassung und Dekodierung von IR-Protokollen (Input Capture, USB CDC)</li>
+      <li>Hilfsprogramme für Prüfstände und Service in Python und C#</li>
+    </ul>
   </div>
 </div>
 
-<h2><span data-l="en">Services</span><span data-l="ru">Чем могу помочь</span></h2>
+<h2><span data-l="en">Services</span><span data-l="ru">Чем могу помочь</span><span data-l="de">Leistungen</span></h2>
 <div class="svc">
-  <div><b><span data-l="en">Firmware from scratch</span><span data-l="ru">Прошивка с нуля</span></b><span data-l="en">from a spec or an existing board and schematic</span><span data-l="ru">по ТЗ или по готовой плате и схеме</span></div>
-  <div><b><span data-l="en">Legacy code rework</span><span data-l="ru">Доработка чужого кода</span></b><span data-l="en">understand, fix, extend</span><span data-l="ru">разобраться, исправить, добавить функции</span></div>
-  <div><b><span data-l="en">Bootloaders</span><span data-l="ru">Загрузчики</span></b><span data-l="en">updates over CAN, RS-485, USB</span><span data-l="ru">обновление по CAN, RS-485, USB</span></div>
-  <div><b><span data-l="en">Protocols</span><span data-l="ru">Протоколы</span></b><span>CAN, Modbus, UART, SPI, I²C, MQTT</span></div>
-  <div><b><span data-l="en">PC software</span><span data-l="ru">ПО для ПК</span></b><span data-l="en">configuration, calibration, test automation (C#, Python)</span><span data-l="ru">настройка, калибровка, автотесты (C#, Python)</span></div>
-  <div><b><span data-l="en">Porting</span><span data-l="ru">Перенос на аналоги</span></b><span data-l="en">STM32 → GD32 and other MCUs</span><span data-l="ru">STM32 → GD32 и др.</span></div>
+  <div><b><span data-l="en">Firmware from scratch</span><span data-l="ru">Прошивка с нуля</span><span data-l="de">Firmware von Grund auf</span></b><span data-l="en">from a spec or an existing board and schematic</span><span data-l="ru">по ТЗ или по готовой плате и схеме</span><span data-l="de">nach Lastenheft oder für eine vorhandene Platine mit Schaltplan</span></div>
+  <div><b><span data-l="en">Legacy code rework</span><span data-l="ru">Доработка чужого кода</span><span data-l="de">Überarbeitung von Bestandscode</span></b><span data-l="en">understand, fix, extend</span><span data-l="ru">разобраться, исправить, добавить функции</span><span data-l="de">einarbeiten, Fehler beheben, erweitern</span></div>
+  <div><b><span data-l="en">Bootloaders</span><span data-l="ru">Загрузчики</span><span data-l="de">Bootloader</span></b><span data-l="en">updates over CAN, RS-485, USB</span><span data-l="ru">обновление по CAN, RS-485, USB</span><span data-l="de">Updates über CAN, RS-485, USB</span></div>
+  <div><b><span data-l="en">Protocols</span><span data-l="ru">Протоколы</span><span data-l="de">Protokolle</span></b><span>CAN, Modbus, UART, SPI, I²C, MQTT</span></div>
+  <div><b><span data-l="en">PC software</span><span data-l="ru">ПО для ПК</span><span data-l="de">PC-Software</span></b><span data-l="en">configuration, calibration, test automation (C#, Python)</span><span data-l="ru">настройка, калибровка, автотесты (C#, Python)</span><span data-l="de">Konfiguration, Kalibrierung, Testautomatisierung (C#, Python)</span></div>
+  <div><b><span data-l="en">Porting</span><span data-l="ru">Перенос на аналоги</span><span data-l="de">Portierung</span></b><span data-l="en">STM32 → GD32 and other MCUs</span><span data-l="ru">STM32 → GD32 и др.</span><span data-l="de">STM32 → GD32 und andere MCUs</span></div>
 </div>
 
-<h2><span data-l="en">Contact</span><span data-l="ru">Контакты</span></h2>
+<h2><span data-l="en">Contact</span><span data-l="ru">Контакты</span><span data-l="de">Kontakt</span></h2>
 <div class="contacts">
   <p>Email: <a href="mailto:alexbariskin@gmail.com">alexbariskin@gmail.com</a></p>
   <p>Telegram: <a href="https://t.me/OnWert">@OnWert</a></p>
   <p data-l="en">Remote work. I usually reply within a day.</p>
   <p data-l="ru">Работаю удалённо, как самозанятый. Отвечаю в течение дня.</p>
+  <p data-l="de">Remote-Arbeit. Ich antworte in der Regel innerhalb eines Tages.</p>
 </div>
 
-<footer>© 2026 <span data-l="en">Alexandru Chiurcciu</span><span data-l="ru">Александр Кюркчу</span></footer>
+<footer>© 2026 <span data-l="en">Alexandru Chiurcciu</span><span data-l="ru">Александр Кюркчу</span><span data-l="de">Alexandru Chiurcciu</span></footer>
 </div>
 <script>
 function setL(l){
   document.body.classList.toggle('ru',l==='ru');
+  document.body.classList.toggle('de',l==='de');
   document.documentElement.lang=l;
   document.getElementById('b-en').classList.toggle('on',l==='en');
   document.getElementById('b-ru').classList.toggle('on',l==='ru');
+  document.getElementById('b-de').classList.toggle('on',l==='de');
   try{localStorage.setItem('lang',l)}catch(e){}
 }
 var s=null;try{s=localStorage.getItem('lang')}catch(e){}
-if(s==='ru'||(!s&&location.hash==='#ru'))setL('ru');
+var h=location.hash.slice(1);
+if(s==='ru'||s==='de')setL(s);else if(!s&&(h==='ru'||h==='de'))setL(h);
 </script>
 </body>
 </html>
